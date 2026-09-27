@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>13 Tattoo Studio | Manisa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:0.001ms!important;scroll-behavior:auto!important}
+}
+
+:root{
+  --bg:#0c0705;
+  --bg-2:#150c09;
+  --bg-3:#1c1210;
+  --card:#1a100d;
+  --line:rgba(232,214,196,0.09);
+  --line-strong:rgba(232,214,196,0.18);
+  --paper:#e8d8bf;
+  --ink:#f2e6d3;
+  --oxblood:#8f2a1e;
+  --ember:#c8452c;
+  --ember-bright:#e2603f;
+  --brass:#b3873f;
+  --brass-light:#d8ae6c;
+  --muted:#9c8a79;
+  --text:#efe4d4;
+  --shadow:0 14px 34px rgba(0,0,0,0.5);
+}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Barlow',sans-serif;
+  overflow-x:hidden;
+  padding-bottom:78px;
+  padding-top:env(safe-area-inset-top,0px);
+  -webkit-tap-highlight-color:transparent;
+}
+::selection{background:var(--ember);color:#fff}
+:focus-visible{outline:2px solid var(--brass-light);outline-offset:3px}
+
+/* subtle paper-grain wash across the whole page */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;
+  background-image:radial-gradient(rgba(232,214,196,0.025) 1px, transparent 1px);
+  background-size:3px 3px;
+  opacity:0.5;
+}
+
+/* ── LOADER ── */
+#loader{
+  position:fixed;inset:0;background:#0a0504;z-index:9999;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;
+  transition:opacity .7s ease;
+}
+#loader.hide{opacity:0;pointer-events:none}
+#loader svg{width:64px;height:64px}
+.loader-word{font-family:'Rye',serif;font-size:15px;letter-spacing:5px;color:var(--brass-light);text-transform:uppercase}
+
+/* ── HEADER ── */
+.app-header{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding-top:env(safe-area-inset-top,0px);
+  background:rgba(12,7,5,0.85);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+  transition:background .3s ease, padding .3s ease;
+}
+.app-header-in{
+  padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  transition:padding .3s ease;
+}
+.app-header.scrolled .app-header-in{padding:9px 18px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{width:34px;height:34px;flex-shrink:0;color:var(--ember-bright)}
+.brand-text{font-family:'Rye',serif;font-size:17px;letter-spacing:1px;color:var(--ink);line-height:1}
+.brand-sub{font-size:9px;letter-spacing:3px;color:var(--muted);margin-top:3px}
+.header-right{display:flex;align-items:center;gap:10px}
+.rating-badge{
+  display:flex;align-items:center;gap:5px;
+  border:1px solid var(--line-strong);border-radius:20px;padding:5px 11px;
+  font-size:12px;font-weight:700;color:var(--brass-light);font-family:'Barlow Condensed',sans-serif;
+}
+.status-pill{
+  display:flex;align-items:center;gap:6px;font-size:11px;color:#8fbf8a;font-weight:600;
+  border:1px solid rgba(143,191,138,0.25);border-radius:20px;padding:5px 10px;
+}
+.status-dot{width:6px;height:6px;border-radius:50%;background:#7fc47a;box-shadow:0 0 6px #7fc47a}
+
+/* ── HERO ── */
+.hero{
+  margin-top:64px;min-height:88vh;position:relative;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 22px 36px;overflow:hidden;
+  background:
+    radial-gradient(120% 60% at 15% 0%, rgba(143,42,30,0.28), transparent 60%),
+    radial-gradient(90% 50% at 100% 10%, rgba(179,135,63,0.12), transparent 55%),
+    linear-gradient(180deg, var(--bg-2) 0%, var(--bg) 60%);
+}
+.hero-glyph{
+  position:absolute;right:-40px;top:8%;width:340px;height:340px;
+  color:rgba(232,214,196,0.05);pointer-events:none;
+}
+.hero-content{position:relative;z-index:2}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--brass-light);font-family:'Barlow Condensed',sans-serif;
+  font-size:13px;font-weight:600;letter-spacing:1px;margin-bottom:18px;
+}
+.hero-eyebrow svg{width:14px;height:14px}
+.hero h1{
+  font-family:'Rye',serif;font-weight:400;
+  font-size:clamp(42px,13vw,72px);line-height:0.98;color:var(--ink);
+  text-shadow:0 2px 0 rgba(0,0,0,0.4);
+}
+.hero h1 em{
+  font-style:normal;display:block;color:var(--ember-bright);
+}
+.hero-line{
+  width:100%;max-width:320px;height:14px;margin:14px 0 16px;
+}
+.hero-line path{
+  fill:none;stroke:var(--ember);stroke-width:2.5;stroke-linecap:round;
+  stroke-dasharray:400;stroke-dashoffset:400;
+  animation:draw 1.6s 0.5s ease forwards;
+}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero-sub{
+  font-size:15px;color:rgba(239,228,212,0.68);line-height:1.6;max-width:36ch;
+}
+.hero-actions{display:flex;gap:10px;margin-top:26px}
+.btn-primary{
+  flex:1;padding:16px;border-radius:4px;
+  background:var(--ember);color:#fff;
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:15px;letter-spacing:0.5px;
+  border:1px solid var(--ember-bright);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;
+  box-shadow:0 10px 26px rgba(200,69,44,0.28);
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.btn-primary:active{transform:scale(0.97)}
+.btn-outline{
+  padding:16px 20px;border-radius:4px;
+  border:1px solid var(--line-strong);color:var(--ink);
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:15px;
+  background:rgba(232,214,196,0.04);
+  cursor:pointer;text-decoration:none;
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  transition:border-color .2s,background .2s;
+}
+.btn-outline:active{background:rgba(232,214,196,0.09)}
+
+/* ── STATS ── */
+.stats-row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  position:relative;z-index:2;
+}
+.stat{padding:22px 10px;text-align:center;border-right:1px solid var(--line)}
+.stat:last-child{border-right:none}
+.stat-num{font-family:'Rye',serif;font-size:28px;color:var(--brass-light)}
+.stat-label{font-size:10.5px;color:var(--muted);letter-spacing:1.5px;margin-top:4px;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase}
+
+/* ── SECTIONS ── */
+section{padding:52px 22px;position:relative}
+.sec-head{margin-bottom:30px;max-width:34ch}
+.sec-kicker{
+  font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:600;
+  color:var(--brass-light);letter-spacing:1px;margin-bottom:8px;
+}
+.sec-title{font-family:'Rye',serif;font-size:30px;color:var(--ink);line-height:1.15}
+.sec-title em{font-style:normal;color:var(--ember-bright)}
+.sec-note{font-size:13.5px;color:var(--muted);margin-top:10px;line-height:1.6}
+
+/* ── SERVICES ── */
+#services{background:var(--bg)}
+.srv-list{display:flex;flex-direction:column;gap:1px;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.srv-row{
+  background:var(--card);padding:20px 18px;display:flex;gap:16px;align-items:flex-start;
+  border-bottom:1px solid var(--line);
+}
+.srv-row:last-child{border-bottom:none}
+.srv-icon{width:38px;height:38px;flex-shrink:0;color:var(--ember-bright);margin-top:2px}
+.srv-name{font-family:'Barlow Condensed',sans-serif;font-size:19px;font-weight:700;color:var(--ink)}
+.srv-desc{font-size:13px;color:var(--muted);line-height:1.55;margin-top:5px}
+.srv-price{
+  display:inline-block;margin-top:10px;font-size:11.5px;font-weight:600;
+  color:var(--brass-light);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px;
+}
+
+/* ── FLASH SHEET (styles showcase, in place of a photo gallery) ── */
+#gallery{background:var(--bg-2)}
+.flash-note{
+  border:1px dashed var(--line-strong);border-radius:6px;padding:12px 14px;
+  font-size:12.5px;color:var(--muted);line-height:1.55;margin-bottom:22px;
+}
+.flash-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.flash-card{
+  background:linear-gradient(160deg, var(--bg-3), var(--card));
+  border:1px solid var(--line);border-radius:6px;
+  padding:20px 14px;text-align:center;
+  transition:transform .25s ease, border-color .25s ease;
+}
+.flash-card:hover{transform:translateY(-3px) rotate(-0.4deg);border-color:var(--line-strong)}
+.flash-card svg{width:40px;height:40px;color:var(--brass-light);margin-bottom:10px}
+.flash-card-name{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;color:var(--ink)}
+.flash-card-tag{font-size:10.5px;color:var(--muted);letter-spacing:0.5px;margin-top:2px}
+
+/* ── ABOUT ── */
+#about{background:var(--bg)}
+.about-wrap{border:1px solid var(--line);border-radius:6px;background:var(--card);padding:26px 22px}
+.about-wrap p{font-size:14px;color:rgba(239,228,212,0.75);line-height:1.8;margin-bottom:14px}
+.about-wrap p:last-of-type{margin-bottom:0}
+.about-feats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.feat{
+  display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:500;color:var(--ink);
+  border-top:1px solid var(--line);padding-top:10px;
+}
+.feat svg{flex-shrink:0;color:var(--ember-bright);width:15px;height:15px}
+
+/* ── REVIEWS ── */
+#reviews{background:var(--bg-2)}
+.reviews-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}
+.reviews-scroll::-webkit-scrollbar{display:none}
+.review-card{
+  min-width:270px;scroll-snap-align:start;
+  background:var(--card);border:1px solid var(--line);border-radius:6px;padding:20px;
+}
+.review-stars{color:var(--brass-light);font-size:13px;letter-spacing:2px;margin-bottom:10px}
+.review-text{font-size:13px;color:rgba(239,228,212,0.72);line-height:1.6;margin-bottom:16px}
+.review-author{display:flex;align-items:center;gap:10px}
+.review-avatar{
+  width:32px;height:32px;border-radius:50%;background:var(--oxblood);
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:var(--ink);
+  font-family:'Barlow Condensed',sans-serif;
+}
+.review-name{font-size:13px;font-weight:600;color:var(--ink)}
+.review-date{font-size:10.5px;color:var(--muted)}
+
+/* ── HOURS ── */
+#hours{background:var(--bg)}
+.hours-card{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--card)}
+.hours-row{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--line)}
+.hours-row:last-child{border-bottom:none}
+.hours-row.today{background:rgba(200,69,44,0.08)}
+.hours-day{font-size:13px;color:rgba(239,228,212,0.68)}
+.hours-day.today-label{color:var(--ink);font-weight:700}
+.hours-time{font-size:13px;font-weight:600;color:var(--brass-light);font-family:'Barlow Condensed',sans-serif}
+.hours-badge{
+  font-size:9px;font-weight:700;color:var(--ember-bright);letter-spacing:1.5px;
+  border:1px solid rgba(200,69,44,0.3);border-radius:3px;padding:2px 6px;margin-left:8px;
+}
+
+/* ── CONTACT ── */
+#contact{background:var(--bg-2)}
+.contact-cards{display:flex;flex-direction:column;gap:9px}
+.contact-card{
+  background:var(--card);border:1px solid var(--line);border-radius:6px;padding:16px 18px;
+  display:flex;align-items:center;gap:15px;text-decoration:none;color:var(--text);
+  transition:border-color .2s;
+}
+.contact-card:active{transform:scale(0.99)}
+.contact-card:hover{border-color:var(--line-strong)}
+.contact-icon{width:22px;height:22px;flex-shrink:0;color:var(--ember-bright)}
+.contact-label{font-size:10.5px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
+.contact-value{font-size:14.5px;font-weight:600;color:var(--ink)}
+.contact-arrow{color:var(--muted);font-size:16px}
+.map-cta{
+  margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px;
+  border:1px dashed var(--line-strong);border-radius:6px;padding:14px;
+  font-size:13px;color:var(--brass-light);text-decoration:none;font-weight:600;
+}
+
+/* ── CTA BAND ── */
+.cta{margin:0 22px 24px;background:linear-gradient(155deg,#1c0906,#2a0c07);border:1px solid rgba(200,69,44,0.28);border-radius:10px;padding:32px 22px;text-align:center;position:relative;overflow:hidden}
+.cta-title{font-family:'Rye',serif;font-size:26px;color:var(--ink);margin-bottom:10px;line-height:1.2}
+.cta-sub{font-size:13px;color:rgba(239,228,212,0.62);line-height:1.55;margin-bottom:22px;max-width:32ch;margin-left:auto;margin-right:auto}
+.cta-btn{
+  display:inline-flex;align-items:center;gap:9px;background:var(--ember);color:#fff;
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:15px;
+  padding:15px 26px;border-radius:4px;text-decoration:none;box-shadow:0 10px 26px rgba(200,69,44,0.3);
+}
+
+/* ── FOOTER ── */
+footer{background:var(--bg);border-top:1px solid var(--line);padding:28px 22px 20px;text-align:center}
+.footer-word{font-family:'Rye',serif;font-size:20px;color:var(--ink);margin-bottom:4px}
+.footer-sub{font-size:10.5px;color:var(--muted);letter-spacing:2px;margin-bottom:18px}
+.footer-copy{font-size:11px;color:rgba(239,228,212,0.25)}
+
+/* ── REVEAL (single, restrained use) ── */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── BOTTOM NAV ── */
+.mob-bot{
+  display:none;position:fixed;bottom:0;left:0;right:0;height:66px;z-index:9998;
+  background:rgba(10,5,4,0.96);backdrop-filter:blur(20px);border-top:1px solid var(--line);
+  align-items:stretch;justify-content:space-around;
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media(max-width:768px){.mob-bot{display:flex}}
+.mob-btn{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;
+  text-decoration:none;color:var(--muted);font-size:9.5px;font-weight:600;
+  font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px;position:relative;
+}
+.mob-btn svg{width:20px;height:20px;transition:transform .2s}
+.mob-btn.active{color:var(--ember-bright)}
+.mob-btn.active svg{transform:scale(1.1)}
+.mob-btn.active::after{content:'';position:absolute;top:2px;left:50%;transform:translateX(-50%);width:18px;height:2px;background:var(--ember-bright);border-radius:2px}
+.mob-center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
+.mob-call{
+  width:44px;height:44px;border-radius:50%;background:var(--ember);
+  display:flex;align-items:center;justify-content:center;text-decoration:none;
+  box-shadow:0 0 0 4px rgba(200,69,44,0.15);margin-top:-14px;border:2px solid var(--bg);
+}
+.mob-call svg{width:19px;height:19px;color:#fff}
+.mob-call-label{font-size:8px;font-weight:700;color:var(--ember-bright);letter-spacing:1px}
+
+/* ── layout widths ── */
+@media(min-width:640px){
+  .flash-grid{grid-template-columns:repeat(3,1fr)}
+  .about-feats{grid-template-columns:repeat(4,1fr)}
+}
+@media(min-width:900px){
+  .hero-content,.sec-head,.srv-list,.flash-grid,.about-wrap,.reviews-scroll,.hours-card,.contact-cards,.cta{max-width:760px;margin-left:auto;margin-right:auto}
+  .app-header-in{max-width:900px;margin:0 auto}
+  .hero{padding-left:0;padding-right:0}
+}
+
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--oxblood)}
+input,textarea,select{font-size:16px!important}
+</style>
+</head>
+<body>
+
+<!-- SVG SYMBOL DEFS (original line-art, used across the page) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <symbol id="ic-13" viewBox="0 0 64 64">
+    <path d="M32 10c8 10 18 14 18 24 0 10-8 18-18 18s-18-8-18-18c0-10 10-14 18-24z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M32 30v4M28 34h8" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M32 42v10" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M26 52h12" stroke="currentColor" stroke-width="1.6"/>
+    <text x="32" y="27" font-family="Rye,serif" font-size="13" text-anchor="middle" fill="currentColor">13</text>
+  </symbol>
+  <symbol id="ic-rose" viewBox="0 0 64 64">
+    <circle cx="32" cy="24" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M25 20c2-4 10-4 12 0M23 26c1 4 8 6 12 3M27 30c2 3 8 3 10 0" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M32 34v20M32 40c-5 1-8 5-7 9M32 46c5 0 8 3 8 7" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M22 44l-4 3M42 50l4 3" stroke="currentColor" stroke-width="1.4"/>
+  </symbol>
+  <symbol id="ic-skull" viewBox="0 0 64 64">
+    <path d="M32 12c-9 0-15 6-15 15 0 6 3 9 4 12h22c1-3 4-6 4-12 0-9-6-15-15-15z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <circle cx="26" cy="27" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <circle cx="38" cy="27" r="3" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M32 30v6l-3 2h6l-3-2" fill="none" stroke="currentColor" stroke-width="1.4"/>
+    <path d="M23 39h18v5c0 3-3 4-3 4h-3v-4h-3v4h-3v-4h-3v4h-3s-3-1-3-4z" fill="none" stroke="currentColor" stroke-width="1.6"/>
+  </symbol>
+  <symbol id="ic-swallow" viewBox="0 0 64 64">
+    <path d="M8 30c10-6 18-3 24 4 6-7 14-10 24-4-8 2-14 6-18 12l-6 8-6-8c-4-6-10-10-18-12z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M32 34v14" stroke="currentColor" stroke-width="1.4"/>
+  </symbol>
+  <symbol id="ic-snake" viewBox="0 0 64 64">
+    <path d="M18 46c-4-3-4-9 0-12s10-2 12 2 1 8-3 9-6-2-4-5 5-3 6 0" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M27 40c4-4 10-6 15-4 6 2 9 8 6 13-3 4-9 4-12 0" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <circle cx="44" cy="42" r="1.6" fill="currentColor"/>
+    <path d="M48 40l4-2-1 4z" fill="currentColor"/>
+  </symbol>
+  <symbol id="ic-anchor" viewBox="0 0 64 64">
+    <circle cx="32" cy="16" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M32 20v28M20 26h24M18 38c0 8 6 14 14 14s14-6 14-14" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M14 38l4-4M50 38l-4-4" stroke="currentColor" stroke-width="1.6"/>
+  </symbol>
+  <symbol id="ic-mask" viewBox="0 0 64 64">
+    <path d="M32 10c-12 0-18 9-18 20 0 13 8 22 18 22s18-9 18-22c0-11-6-20-18-20z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M20 28c3-3 7-3 9 0M35 28c2-3 6-3 9 0" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M24 40c3 4 13 4 16 0" fill="none" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M18 20l-4-6M46 20l4-6" stroke="currentColor" stroke-width="1.6"/>
+  </symbol>
+  <symbol id="ic-needle" viewBox="0 0 64 64">
+    <path d="M14 50l26-26 6 6-26 26z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M40 24l6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M14 50l-4 6 6-4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <circle cx="46" cy="18" r="2.4" fill="currentColor"/>
+  </symbol>
+  <symbol id="ic-gem" viewBox="0 0 64 64">
+    <path d="M18 24l14-12 14 12-14 28z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M18 24h28M25 24l7 28 7-28M25 24l-3-8M39 24l3-8" fill="none" stroke="currentColor" stroke-width="1.4"/>
+  </symbol>
+  <symbol id="ic-sketch" viewBox="0 0 64 64">
+    <path d="M14 46l24-24 6 6-24 24H14v-6z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M32 28l6 6" stroke="currentColor" stroke-width="1.6"/>
+    <path d="M44 12l4 4M44 20l4-4" stroke="currentColor" stroke-width="1.4"/>
+  </symbol>
+  <symbol id="ic-pin" viewBox="0 0 64 64">
+    <path d="M32 8c-9 0-16 7-16 16 0 12 16 32 16 32s16-20 16-32c0-9-7-16-16-16z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <circle cx="32" cy="24" r="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+  </symbol>
+  <symbol id="ic-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 012.18 2H5.2a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L6.3 9.8a16 16 0 006.9 6.9l1.16-1.15a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7a2 2 0 011.72 2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="ic-whatsapp" viewBox="0 0 24 24"><path d="M17.6 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.7 1-.9 1.2-.4.2-.7.1a8 8 0 01-4-3.5c-.3-.5.3-.5.8-1.6.1-.2 0-.4 0-.5L9.3 7c-.2-.5-.4-.4-.6-.4H8c-.2 0-.5.1-.8.4C6.9 7.3 6.2 8 6.2 9.4s1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.1-1.4-.1-.1-.3-.2-.6-.3z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M20 4a10 10 0 00-15.5 12L3 21l5.2-1.4A10 10 0 1020 4z" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
+</defs>
+</svg>
+
+<!-- LOADER -->
+<div id="loader" aria-hidden="true">
+  <svg viewBox="0 0 64 64" style="color:var(--ember-bright)"><use href="#ic-13"/></svg>
+  <div class="loader-word">13 Tattoo</div>
+</div>
+
+<!-- HEADER -->
+<header class="app-header" id="siteHeader">
+  <div class="app-header-in">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-13"/></svg>
+      <div>
+        <div class="brand-text">13 Tattoo</div>
+        <div class="brand-sub">TATTOO &amp; PIERCING</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="rating-badge">★ 5.0</div>
+      <div class="status-pill"><span class="status-dot"></span>Açık</div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <svg class="hero-glyph" viewBox="0 0 64 64" aria-hidden="true"><use href="#ic-13"/></svg>
+  <div class="hero-content">
+    <div class="hero-eyebrow"><svg viewBox="0 0 64 64"><use href="#ic-pin"/></svg>Manisa, Şehzadeler · 2023'ten beri</div>
+    <h1>Cildine<em>işlenen sanat</em></h1>
+    <svg class="hero-line" viewBox="0 0 320 14"><path d="M4 10c40-14 80 8 120-2s80 6 120-4"/></svg>
+    <p class="hero-sub">Steril bir stüdyoda, elinle birlikte tasarladığımız, bir ömür taşıyacağın işler çıkarıyoruz.</p>
+    <div class="hero-actions">
+      <a href="tel:05319483353" class="btn-primary"><svg width="16" height="16"><use href="#ic-phone"/></svg>Hemen Ara</a>
+      <a href="https://wa.me/905319483353" class="btn-outline"><svg width="16" height="16"><use href="#ic-whatsapp"/></svg>WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat"><div class="stat-num" data-target="500">0</div><div class="stat-label">Dövme</div></div>
+  <div class="stat"><div class="stat-num">5.0</div><div class="stat-label">Google Puanı</div></div>
+  <div class="stat"><div class="stat-num" data-target="9">0</div><div class="stat-label">Yorum</div></div>
+</div>
+
+<!-- SERVİSLER -->
+<section id="services">
+  <div class="sec-head">
+    <div class="sec-kicker">Hizmetler</div>
+    <h2 class="sec-title">Ne <em>yapıyoruz</em></h2>
+    <p class="sec-note">Profesyonel ekipman, steril ortam, kalıcı sanat.</p>
+  </div>
+  <div class="srv-list">
+    <div class="srv-row">
+      <svg class="srv-icon" viewBox="0 0 64 64"><use href="#ic-needle"/></svg>
+      <div>
+        <div class="srv-name">Kalıcı Dövme</div>
+        <div class="srv-desc">Her tarza uygun özgün tasarımlar — minimalden tribale, portreden geometriğe. Kendi fikrini getir ya da stüdyomuzdan ilham al.</div>
+        <span class="srv-price">Kişiye özel fiyatlandırma</span>
+      </div>
+    </div>
+    <div class="srv-row">
+      <svg class="srv-icon" viewBox="0 0 64 64"><use href="#ic-gem"/></svg>
+      <div>
+        <div class="srv-name">Piercing</div>
+        <div class="srv-desc">Kulak, burun, dudak ve vücut piercingleri. Titanyum ve implant çelik takılarla güvenli uygulama.</div>
+        <span class="srv-price">Uygun fiyatlar</span>
+      </div>
+    </div>
+    <div class="srv-row">
+      <svg class="srv-icon" viewBox="0 0 64 64"><use href="#ic-sketch"/></svg>
+      <div>
+        <div class="srv-name">Özel Tasarım</div>
+        <div class="srv-desc">Sıfırdan özgün konsept oluşturma. Hayalindeki dövmeyi birlikte tasarlayalım.</div>
+        <span class="srv-price">Ücretsiz konsültasyon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STİLLER -->
+<section id="gallery">
+  <div class="sec-head">
+    <div class="sec-kicker">Stiller</div>
+    <h2 class="sec-title">Çalıştığımız <em>tarzlar</em></h2>
+  </div>
+  <div class="flash-note">Bu bölüm, gerçek çalışma fotoğraflarınız yerine geçici bir stil rehberi olarak hazırlandı — bana fotoğraflarınızı (her birini ayrı bir mesajda) gönderirsen, bu kartların yerine gerçek dövme fotoğraflarınızı yerleştirebilirim.</div>
+  <div class="flash-grid">
+    <div class="flash-card"><svg viewBox="0 0 64 64"><use href="#ic-rose"/></svg><div class="flash-card-name">Fine Line</div><div class="flash-card-tag">İnce çizgi</div></div>
+    <div class="flash-card"><svg viewBox="0 0 64 64"><use href="#ic-skull"/></svg><div class="flash-card-name">Blackwork</div><div class="flash-card-tag">Dolgun siyah</div></div>
+    <div class="flash-card"><svg viewBox="0 0 64 64"><use href="#ic-swallow"/></svg><div class="flash-card-name">Traditional</div><div class="flash-card-tag">Amerikan klasik</div></div>
+    <div class="flash-card"><svg viewBox="0 0 64 64"><use href="#ic-snake"/></svg><div class="flash-card-name">Chicano</div><div class="flash-card-tag">Gölgeli figür</div></div>
+    <div class="flash-card"><svg viewBox="0 0 64 64"><use href="#ic-mask"/></svg><div class="flash-card-name">Japanese</div><div class="flash-card-tag">Hannya &amp; efsane</div></div>
+    <div class="flash-card"><svg viewBox="0 0 64 64"><use href="#ic-anchor"/></svg><div class="flash-card-name">Realism</div><div class="flash-card-tag">Gerçekçi detay</div></div>
+  </div>
+</section>
+
+<!-- HAKKIMIZDA -->
+<section id="about">
+  <div class="sec-head">
+    <div class="sec-kicker">Hakkımızda</div>
+    <h2 class="sec-title">13 <em>Tattoo</em></h2>
+  </div>
+  <div class="about-wrap">
+      <p>Manisa Şehzadeler'de hizmet veren 13 Tattoo Studio, sanatı ciltlere işleme tutkusuyla kurulmuş bir dövme stüdyosudur.</p>
+      <p>Her müşterimizi dinler, hayalindeki tasarımı birlikte yaratırız. Steril malzemeler, profesyonel dokunuş ve kendinizi evinizde hissedeceğiniz samimi bir atmosfer önceliğimizdir.</p>
+      <div class="about-feats">
+        <div class="feat">Steril ortam</div>
+        <div class="feat">Profesyonel ekipman</div>
+        <div class="feat">Özel tasarım</div>
+        <div class="feat">5.0 Google puanı</div>
+      </div>
+  </div>
+</section>
+
+<!-- YORUMLAR -->
+<section id="reviews">
+  <div class="sec-head">
+    <div class="sec-kicker">Yorumlar</div>
+    <h2 class="sec-title">Müşteri <em>deneyimleri</em></h2>
+  </div>
+  <div class="reviews-scroll">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Harika bir deneyimdi. Hem temiz hem de profesyonel bir ortamda çalışıyorlar. Dövmemden çok memnun kaldım.</p>
+      <div class="review-author"><div class="review-avatar">M</div><div><div class="review-name">Merve K.</div><div class="review-date">Google Yorumu · 5/5</div></div></div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">İstediğim tasarımı mükemmel şekilde uyguladılar. Çok titiz ve özenli bir çalışma. Kesinlikle tavsiye ederim.</p>
+      <div class="review-author"><div class="review-avatar">A</div><div><div class="review-name">Ahmet Y.</div><div class="review-date">Google Yorumu · 5/5</div></div></div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Manisa'daki en iyi dövme stüdyosu. Fiyat/kalite açısından çok başarılı. Piercing için de geldim, harika oldu.</p>
+      <div class="review-author"><div class="review-avatar">S</div><div><div class="review-name">Selin A.</div><div class="review-date">Google Yorumu · 5/5</div></div></div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">İkinci dövmemi de buraya yaptırdım. Her seferinde aynı kalite ve özen. Teşekkürler 13 Tattoo.</p>
+      <div class="review-author"><div class="review-avatar">E</div><div><div class="review-name">Emre T.</div><div class="review-date">Google Yorumu · 5/5</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SAATLER -->
+<section id="hours">
+  <div class="sec-head">
+    <div class="sec-kicker">Çalışma Saatleri</div>
+    <h2 class="sec-title">Bizi <em>bulun</em></h2>
+  </div>
+  <div class="hours-card" id="hoursCard">
+    <div class="hours-row" data-day="Pazartesi"><span class="hours-day">Pazartesi</span><span class="hours-time">12:00 – 21:00</span></div>
+    <div class="hours-row" data-day="Salı"><span class="hours-day">Salı</span><span class="hours-time">12:00 – 21:00</span></div>
+    <div class="hours-row" data-day="Çarşamba"><span class="hours-day">Çarşamba</span><span class="hours-time">12:00 – 21:00</span></div>
+    <div class="hours-row" data-day="Perşembe"><span class="hours-day">Perşembe</span><span class="hours-time">12:00 – 21:00</span></div>
+    <div class="hours-row" data-day="Cuma"><span class="hours-day">Cuma</span><span class="hours-time">12:00 – 21:00</span></div>
+    <div class="hours-row" data-day="Cumartesi"><span class="hours-day">Cumartesi</span><span class="hours-time">12:00 – 21:00</span></div>
+    <div class="hours-row" data-day="Pazar"><span class="hours-day">Pazar</span><span class="hours-time" style="color:var(--muted)">Kapalı</span></div>
+  </div>
+</section>
+
+<!-- İLETİŞİM -->
+<section id="contact">
+  <div class="sec-head">
+    <div class="sec-kicker">İletişim</div>
+    <h2 class="sec-title">Randevu <em>al</em></h2>
+    <p class="sec-note">Arayın ya da WhatsApp'tan mesaj atın.</p>
+  </div>
+  <div class="contact-cards">
+    <a href="tel:05319483353" class="contact-card">
+      <svg class="contact-icon" viewBox="0 0 24 24"><use href="#ic-phone"/></svg>
+      <div><div class="contact-label">Telefon</div><div class="contact-value">0531 948 33 53</div></div>
+      <div class="contact-arrow">›</div>
+    </a>
+    <a href="https://wa.me/905319483353" class="contact-card">
+      <svg class="contact-icon" viewBox="0 0 24 24"><use href="#ic-whatsapp"/></svg>
+      <div><div class="contact-label">WhatsApp</div><div class="contact-value">Mesaj Gönder</div></div>
+      <div class="contact-arrow">›</div>
+    </a>
+    <a href="https://maps.google.com/?q=13+Tattoo+Manisa" target="_blank" rel="noopener" class="contact-card">
+      <svg class="contact-icon" viewBox="0 0 64 64"><use href="#ic-pin"/></svg>
+      <div><div class="contact-label">Adres</div><div class="contact-value" style="font-size:13px">1. Anafartalar Şehzadeler / Manisa</div></div>
+      <div class="contact-arrow">›</div>
+    </a>
+  </div>
+  <a href="https://maps.google.com/?q=13+Tattoo+Manisa" target="_blank" rel="noopener" class="map-cta">
+    <svg width="15" height="15" viewBox="0 0 64 64"><use href="#ic-pin"/></svg> Google Haritalar'da aç
+  </a>
+</section>
+
+<!-- CTA -->
+<div class="cta">
+  <div class="cta-title">Randevu almaya hazır mısın?</div>
+  <p class="cta-sub">Hayalindeki dövme için hemen iletişime geç. Ücretsiz konsültasyon sunuyoruz.</p>
+  <a href="https://wa.me/905319483353?text=Merhaba%2C%20randevu%20almak%20istiyorum." class="cta-btn"><svg width="16" height="16"><use href="#ic-whatsapp"/></svg>WhatsApp ile Randevu Al</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-word">13 Tattoo</div>
+  <div class="footer-sub">TATTOO &amp; PIERCING STUDIO · MANİSA</div>
+  <div class="footer-copy">© 2026 13 Tattoo Studio. Tüm hakları saklıdır.</div>
+</footer>
+
+<!-- BOTTOM NAV -->
+<nav class="mob-bot" aria-label="Alt gezinme">
+  <a href="#home" class="mob-btn active" data-nav="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Ana Sayfa</a>
+  <a href="#gallery" class="mob-btn" data-nav="gallery"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Stiller</a>
+  <div class="mob-center">
+    <a href="tel:05319483353" class="mob-call" aria-label="Ara"><svg viewBox="0 0 24 24"><use href="#ic-phone"/></svg></a>
+    <span class="mob-call-label">ARA</span>
+  </div>
+  <a href="#services" class="mob-btn" data-nav="services"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Hizmetler</a>
+  <a href="#contact" class="mob-btn" data-nav="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>İletişim</a>
+</nav>
+
+<script>
+// Loader
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hide'), 900);
+});
+
+// Header shrink on scroll
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 30);
+}, {passive:true});
+
+// Counter animation (once, on first view of stats)
+function animateCounter(el, target){
+  let start = null;
+  const duration = 1400;
+  function step(ts){
+    if(!start) start = ts;
+    const p = Math.min((ts - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(eased * target) + (p === 1 ? '+' : '');
+    if(p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const counterObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const t = parseInt(e.target.dataset.target, 10);
+      if(t){ reduceMotion ? (e.target.textContent = t + '+') : animateCounter(e.target, t); }
+      counterObs.unobserve(e.target);
+    }
+  });
+}, {threshold:0.6});
+document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
+
+// Bottom nav active state by section in view
+const navMap = {home:'home', services:'services', gallery:'gallery', contact:'contact'};
+const navButtons = document.querySelectorAll('.mob-btn');
+const sectionIds = ['home','services','gallery','about','reviews','hours','contact'];
+window.addEventListener('scroll', () => {
+  let current = 'home';
+  sectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if(el && window.scrollY >= el.offsetTop - 100) current = id;
+  });
+  const target = navMap[current] || 'home';
+  navButtons.forEach(b => b.classList.toggle('active', b.dataset.nav === target));
+}, {passive:true});
+
+// Highlight today's hours
+try{
+  const days = ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
+  const today = days[new Date().getDay()];
+  document.querySelectorAll('.hours-row').forEach(row => {
+    if(row.dataset.day === today){
+      row.classList.add('today');
+      const label = row.querySelector('.hours-day');
+      label.classList.add('today-label');
+      label.insertAdjacentHTML('beforeend', ' <span class="hours-badge">Bugün</span>');
+    }
+  });
+}catch(e){}
+</script>
+</body>
+</html>
